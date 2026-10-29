@@ -22,7 +22,7 @@ window.SITE_EN = {
   "map.h2": "The robot works from a map of your facility",
   "map.lead": "We build the map and mark the zones once - after that the robot runs the route on its own and your manager gets a report for every zone.",
   "map.s1": "Facility map",
-  "map.s1d": "A VISTA engineer walks the robot through the site: walls, shopfronts and columns go on the map.",
+  "map.s1d": "A VISTA engineer walks the robot through the site - walls and shopfronts go on the map.",
   "map.s2": "Zones and schedule",
   "map.s2d": "Gallery, atrium, entrance - every zone gets its own time and cleaning mode.",
   "map.s3": "Route and report",

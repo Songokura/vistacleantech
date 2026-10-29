@@ -1,0 +1,9 @@
+_project/
+_deploy/
+*.zip
+.claude/
+.impeccable/
+PRODUCT.md
+DESIGN.md
+.DS_Store
+*.log

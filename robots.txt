@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /assets/lang/
+Disallow: /*lang=kk
+
+User-agent: AdsBot-Google
+User-agent: AdsBot-Google-Mobile
+Allow: /
+Disallow: /assets/lang/
+Disallow: /*lang=kk
+
+Sitemap: https://songokura.github.io/vistacleantech/sitemap.xml

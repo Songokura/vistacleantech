@@ -135,9 +135,9 @@ body.menu-open .burger span:last-child{transform:translateY(-4px) rotate(-45deg)
 @media (hover:hover) and (pointer:fine){.way:hover .way-a{transform:translateX(6px)}}
 
 /* Карта объекта - сцена по скроллу */
-.mapw{position:relative;height:180svh;background:var(--steel);color:var(--text-d)}
-.map-st{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
-.map-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,5vw,80px);align-items:center;padding:calc(var(--hdr) + 10px) 0 24px}
+.mapw{position:relative;background:var(--steel);color:var(--text-d)}
+.map-st{display:flex;align-items:center;overflow:hidden;padding:clamp(64px,9vw,120px) 0}
+.map-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,5vw,80px);align-items:center}
 .map-steps{margin-top:36px;display:grid;gap:4px}
 .map-steps li{display:grid;grid-template-columns:auto 1fr;column-gap:16px;padding:14px 0 14px 18px;border-left:2px solid var(--line-d);color:var(--mute-d);transition:color .4s,border-color .4s}
 .map-steps li b{grid-column:1/-1;font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.015em;color:inherit;margin-bottom:4px;transition:color .4s}
@@ -150,14 +150,10 @@ body.menu-open .burger span:last-child{transform:translateY(-4px) rotate(-45deg)
 .map-live i{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(226,35,26,.18)}
 .map-tag{padding:4px 10px;border-radius:6px;background:rgba(79,180,233,.12);color:var(--sky);font-weight:500;transition:opacity .3s}
 .map-svg{display:block;width:100%;height:auto;aspect-ratio:640/440}
-.map-route{stroke-dasharray:var(--len,4000);stroke-dashoffset:calc(var(--len,4000) * (1 - var(--p,0)))}
-.map-cover{stroke-dasharray:var(--len,4000);stroke-dashoffset:calc(var(--len,4000) * (1 - var(--p,0)))}
 .map-walls,.map-cols,.map-lbl{opacity:calc(.5 + .5 * var(--m,0))}
 .map-zones{opacity:var(--z,0)}
 .t-short{display:none}
-.map-walls{stroke-dasharray:2000;stroke-dashoffset:calc(2000 * (1 - var(--m,0)))}
 .map-bot{opacity:calc(var(--bot,0))}
-.map-bot circle{r:16px}
 .map-done{opacity:var(--done,0);transform:translateY(calc(6px * (1 - var(--done,0))));transition:none}
 
 /* Секции */
@@ -331,8 +327,7 @@ body.menu-open .burger span:last-child{transform:translateY(-4px) rotate(-45deg)
   .burger{display:flex}
   .hdr-ig,.hdr-tel{display:none}
   .hdr.is-solid,body.menu-open .hdr{background:var(--ink)}
-  .map-in{grid-template-columns:1fr;gap:22px;padding-top:calc(var(--hdr) + 8px);align-content:center}
-  .mapw{height:170svh}
+  .map-in{grid-template-columns:1fr;gap:22px;align-content:center}
   .map-txt{order:2}
   .map-card{order:1}
   .map-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:20px}
@@ -372,15 +367,13 @@ body.menu-open .burger span:last-child{transform:translateY(-4px) rotate(-45deg)
   .way:last-child{border-bottom:0}
   .way-d{display:none}
   .way-t{font-size:20px}
-  .mapw{height:150svh}
-  .map-st{height:100svh;align-items:flex-start}
-  .map-in{padding-top:calc(var(--hdr) + 14px)}
+  .map-st{padding:56px 0}
   .map-card{box-shadow:none}
   .map-lbl{font-size:22px}
   .map-zones text{font-size:20px}
   .t-long{display:none}
   .t-short{display:block}
-  .map-done rect{width:190px}
+  .map-done rect{width:236px}
   .sec{padding:72px 0}
   .dir{padding:28px 0}
   .dir-in{grid-template-columns:minmax(0,1fr);gap:22px}

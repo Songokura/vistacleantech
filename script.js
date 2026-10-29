@@ -23,6 +23,9 @@
     (phNodes[k] = phNodes[k] || []).push(el);
     if (!(k in I18N.ru)) I18N.ru[k] = el.getAttribute('placeholder') || '';
   });
+  /* Метки этапов карты в разметке не стоят - русский текст задан здесь */
+  var MAP_TAGS = { 'map.tag1': 'Разметка зон', 'map.tag2': 'Уборка: галерея A', 'map.tag3': 'Отчёт отправлен', 'map.tag4': 'Уборка: галерея B', 'map.tag5': 'Уборка: атриум' };
+  for (var mk in MAP_TAGS) if (!(mk in I18N.ru)) I18N.ru[mk] = MAP_TAGS[mk];
   var curLang = 'ru';
   function t(key) { var dict = I18N[curLang] || {}; return key in dict ? dict[key] : I18N.ru[key]; }
   function loadLang(lang, done) {
@@ -113,44 +116,61 @@
   }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
   d.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
 
-  /* ---------- Карта объекта - сцена по скроллу ---------- */
+  /* ---------- Карта объекта - сцена идёт сама, пока видна ---------- */
   var mapw = d.getElementById('map');
   var mapCard = d.getElementById('mapCard');
   var route = d.getElementById('mapRoute');
+  var cover = d.getElementById('mapCover');
+  var walls = mapCard.querySelector('.map-walls');
   var bot = d.getElementById('mapBot');
   var tag = d.getElementById('mapTag');
   var steps = d.querySelectorAll('#mapSteps li');
   var len = route.getTotalLength();
-  mapCard.style.setProperty('--len', len.toFixed(1));
-  var lastTag = -1, lastStep = -1, lastP = -1;
+  var A_END = 910, B_END = 2354; /* длина маршрута на выходе из галереи A и из галереи B */
+  var MAP_DUR = 14000, MAP_HOLD = 2600, MAP_LOOP = .26;
+  route.style.strokeDasharray = cover.style.strokeDasharray = len + ' ' + len;
+  walls.style.strokeDasharray = '2000 2000';
+  var lastTag = -1, lastStep = -1, mapP = 0;
   function mapTick() {
-    var r = mapw.getBoundingClientRect();
-    var H = w.innerHeight;
-    if (r.bottom < 0 || r.top > H) return;
-    var p = clamp(-r.top / (r.height - H));
-    if (p === lastP && lastTag !== -1) return;
-    lastP = p;
+    var p = mapP;
     var m = .4 + .6 * easeOut(clamp(p / .12));
     var z = easeOut(clamp((p - .1) / .14));
-    var rp = easeOut(clamp((p - .3) / .62));
+    var rp = clamp((p - .3) / .62);
     var done = clamp((p - .92) / .08);
+    var L = len * rp;
+    walls.style.strokeDashoffset = (2000 * (1 - m)).toFixed(1);
+    route.style.strokeDashoffset = cover.style.strokeDashoffset = (len - L).toFixed(1);
+    route.style.visibility = cover.style.visibility = L < 1 ? 'hidden' : 'visible';
     mapCard.style.setProperty('--m', m.toFixed(3));
     mapCard.style.setProperty('--z', z.toFixed(3));
-    mapCard.style.setProperty('--p', rp.toFixed(4));
-    mapCard.style.setProperty('--bot', p > .3 ? 1 : 0);
+    mapCard.style.setProperty('--bot', p > .28 ? 1 : 0);
     mapCard.style.setProperty('--done', done.toFixed(3));
-    if (p > .3) {
-      var L = len * rp;
-      var pt = route.getPointAtLength(L);
-      var pt2 = route.getPointAtLength(Math.min(len, L + 2));
-      var ang = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
-      if (L >= len - 2) ang = 180;
-      bot.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ') rotate(' + ang.toFixed(0) + ') scale(1.6)');
-    }
-    var ti = p < .12 ? 0 : p < .3 ? 1 : p < .92 ? 2 : 3;
+    var pt = route.getPointAtLength(L);
+    var pt2 = route.getPointAtLength(Math.min(len, L + 2));
+    var ang = L >= len - 2 ? 0 : Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
+    bot.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ') rotate(' + ang.toFixed(0) + ') scale(1.6)');
+    var ti = p < .12 ? 0 : p < .3 ? 1 : p >= .92 ? 3 : L < A_END ? 2 : L < B_END ? 4 : 5;
     if (ti !== lastTag) { tag.textContent = t('map.tag' + ti); lastTag = ti; }
-    var si = p < .14 ? 0 : p < .55 ? 1 : 2;
+    var si = p < .12 ? 0 : p < .3 ? 1 : 2;
     if (si !== lastStep) { steps.forEach(function (li, i) { li.classList.toggle('is-on', i === si); }); lastStep = si; }
+  }
+  var mapRun = false, mapT0 = 0, mapFrom = 0;
+  function mapFrame(now) {
+    if (!mapRun) return;
+    var e = now - mapT0, span = MAP_DUR * (1 - mapFrom);
+    if (e < span) mapP = mapFrom + (1 - mapFrom) * e / span;
+    else if (e < span + MAP_HOLD) mapP = 1;
+    else { mapFrom = MAP_LOOP; mapT0 = now; mapP = MAP_LOOP; }
+    mapTick();
+    w.requestAnimationFrame(mapFrame);
+  }
+  if (w.matchMedia('(prefers-reduced-motion: reduce)').matches) { mapP = 1; }
+  else {
+    new IntersectionObserver(function (es) {
+      var vis = es[0].isIntersecting;
+      if (vis && !mapRun) { mapRun = true; mapFrom = mapP >= 1 ? MAP_LOOP : mapP; mapT0 = performance.now(); w.requestAnimationFrame(mapFrame); }
+      else if (!vis) mapRun = false;
+    }, { threshold: .35 }).observe(mapCard);
   }
 
   /* ---------- Лента объектов: шаг - одна карточка ---------- */
@@ -230,14 +250,14 @@
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    w.requestAnimationFrame(function () { hdrState(); mapTick(); stickyState(); ticking = false; });
+    w.requestAnimationFrame(function () { hdrState(); stickyState(); ticking = false; });
   }
   w.addEventListener('scroll', onScroll, { passive: true });
   var lastW = w.innerWidth;
   w.addEventListener('resize', function () {
     if (w.innerWidth === lastW) return;
     lastW = w.innerWidth;
-    lensState(); fitAll(); lastP = -1; onScroll();
+    lensState(); fitAll(); onScroll();
   });
   w.addEventListener('load', function () { lensState(); });
   if (d.fonts && d.fonts.ready) d.fonts.ready.then(fitAll);

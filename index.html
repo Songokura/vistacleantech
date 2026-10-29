@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Onest:wght@400;500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero.webp" media="(min-width: 761px)">
 <link rel="preload" as="image" href="assets/hero-m.webp" media="(max-width: 760px)">
-<link rel="stylesheet" href="styles.css?v=20261029-4">
+<link rel="stylesheet" href="styles.css?v=20261029-5">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -163,13 +163,14 @@
         </div>
         <svg class="map-svg" viewBox="0 0 640 440" aria-label="Схема: маршрут робота по галерее торгового центра">
           <defs>
+            <clipPath id="zoneClip"><rect x="48" y="128" width="136" height="186" rx="3"/><rect x="196" y="102" width="128" height="252" rx="3"/><circle cx="470" cy="220" r="84"/></clipPath>
             <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0v20" fill="none" stroke="#2A323C" stroke-width=".6"/></pattern>
           </defs>
           <rect x="0" y="0" width="640" height="440" fill="url(#grid)"/>
           <g class="map-walls" fill="none" stroke="#5C6878" stroke-width="2">
             <rect x="40" y="36" width="560" height="368" rx="6"/>
             <circle cx="470" cy="220" r="86" stroke-dasharray="3 5"/>
-            <path d="M40 120h150M40 320h150M190 36v226M190 300v104M330 36v78M330 326v78"/>
+            <path d="M40 120h150M40 320h150M190 36v244M190 318v86M330 36v78M330 326v78"/>
             <path d="M60 54h22v40h-22zM100 54h22v40h-22zM140 54h22v40h-22zM60 346h22v40h-22zM100 346h22v40h-22zM140 346h22v40h-22z"/>
             <path d="M352 56h40v22h-40zM412 56h40v22h-40zM472 56h40v22h-40zM532 56h40v22h-40zM352 362h40v22h-40zM412 362h40v22h-40zM472 362h40v22h-40zM532 362h40v22h-40z"/>
             <path d="M600 160v120" stroke-dasharray="4 6"/>
@@ -189,8 +190,8 @@
             <circle cx="470" cy="220" r="84" fill="#4FB4E9" fill-opacity=".12" stroke="#4FB4E9" stroke-opacity=".5" stroke-width="1"/>
             <text x="432" y="326" fill="#CFE6F5">07:00 - 08:00</text>
           </g>
-          <path id="mapCover" class="map-cover" stroke-linecap="square" d="M64 150H170V172H64V194H170V216H64V238H170V260H64V282H170H206V340H312V318H206V296H312V274H206V252H312V230H206V208H312V186H206V164H312V142H206V120H312L433 156H507L531 178H409L399 200H541L544 222H396L400 244H540L528 266H412L441 288H499" fill="none" stroke="#4FB4E9" stroke-opacity=".28" stroke-width="22" stroke-linejoin="round"/>
-          <path id="mapRoute" class="map-route" d="M64 150H170V172H64V194H170V216H64V238H170V260H64V282H170H206V340H312V318H206V296H312V274H206V252H312V230H206V208H312V186H206V164H312V142H206V120H312L433 156H507L531 178H409L399 200H541L544 222H396L400 244H540L528 266H412L441 288H499" fill="none" stroke="#4FB4E9" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+          <path id="mapCover" class="map-cover" stroke-linecap="square" d="M61 141H171V168H61V195H171V222H61V249H171V276H61V303H171H209V349H311V323H209V297H311V271H209V245H311V219H209V193H311V167H209V141H311V115H209L434 142H506L532 168H408L398 194H542L544 220H396L398 246H542L532 272H408L434 298H506" fill="none" stroke="#4FB4E9" stroke-opacity=".28" stroke-width="30" stroke-linejoin="miter" stroke-miterlimit="40" clip-path="url(#zoneClip)"/>
+          <path id="mapRoute" class="map-route" d="M61 141H171V168H61V195H171V222H61V249H171V276H61V303H171H209V349H311V323H209V297H311V271H209V245H311V219H209V193H311V167H209V141H311V115H209L434 142H506L532 168H408L398 194H542L544 220H396L398 246H542L532 272H408L434 298H506" fill="none" stroke="#4FB4E9" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
           <g id="mapBot" class="map-bot" transform="translate(70 150)"><circle r="13" fill="#4FB4E9" fill-opacity=".14"/><rect x="-9" y="-6" width="16" height="12" rx="3" fill="#E8EDF3"/><path d="M7 -6l6 6-6 6z" fill="#4FB4E9"/><rect x="-7" y="-4" width="5" height="8" rx="1" fill="#4FB4E9"/></g>
           <g id="mapDone" class="map-done"><rect x="336" y="408" width="264" height="28" rx="6" fill="#141A21" stroke="#E2231A" stroke-opacity=".8"/><circle cx="352" cy="422" r="5" fill="#E2231A"/><text class="t-long" x="364" y="426" fill="#E8EDF3" font-size="12" font-family="Onest, sans-serif" data-i="map.done">Уборка завершена · 3 зоны из 3</text><text class="t-short" x="364" y="429" fill="#E8EDF3" font-size="20" font-family="Onest, sans-serif" data-i="map.doneShort">Уборка завершена</text></g>
         </svg>
@@ -466,6 +467,6 @@
   <a class="st-ig" href="https://www.instagram.com/vista.clean/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20"><use href="#ic-ig"/></svg></a>
 </nav>
 
-<script src="script.js?v=20261029-4" defer></script>
+<script src="script.js?v=20261029-5" defer></script>
 </body>
 </html>

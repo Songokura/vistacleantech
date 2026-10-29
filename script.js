@@ -126,7 +126,7 @@
   var tag = d.getElementById('mapTag');
   var steps = d.querySelectorAll('#mapSteps li');
   var len = route.getTotalLength();
-  var A_END = 910, B_END = 2354; /* длина маршрута на выходе из галереи A и из галереи B */
+  var A_END = 970, B_END = 2270; /* длина маршрута на выходе из галереи A и из галереи B */
   var MAP_DUR = 14000, MAP_HOLD = 2600, MAP_LOOP = .26;
   route.style.strokeDasharray = cover.style.strokeDasharray = len + ' ' + len;
   walls.style.strokeDasharray = '2000 2000';

@@ -173,28 +173,81 @@
     }, { threshold: .35 }).observe(mapCard);
   }
 
-  /* ---------- Лента объектов: шаг - одна карточка ---------- */
-  var lens = d.getElementById('lens');
-  var prev = d.getElementById('lensPrev'), next = d.getElementById('lensNext');
-  function lensStep() {
-    var c = lens.querySelector('.obj');
-    var gap = parseFloat(getComputedStyle(lens).columnGap) || 18;
-    return c ? c.getBoundingClientRect().width + gap : 300;
+  /* ---------- Ленты со стрелками (объекты, ролики): шаг - одна карточка ---------- */
+  var lensStates = [];
+  function setupLens(id, prevId, nextId) {
+    var lens = d.getElementById(id), prev = d.getElementById(prevId), next = d.getElementById(nextId);
+    if (!lens || !prev || !next) return;
+    function step() {
+      var c = lens.firstElementChild;
+      var gap = parseFloat(getComputedStyle(lens).columnGap) || 18;
+      return c ? c.getBoundingClientRect().width + gap : 300;
+    }
+    function state() {
+      var max = lens.scrollWidth - lens.clientWidth;
+      prev.hidden = next.hidden = max <= 1;
+      prev.disabled = lens.scrollLeft < 4;
+      next.disabled = lens.scrollLeft > max - 4;
+    }
+    prev.addEventListener('click', function () { lens.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { lens.scrollBy({ left: step(), behavior: 'smooth' }); });
+    lens.addEventListener('scroll', state, { passive: true });
+    lens.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { lens.scrollBy({ left: step(), behavior: 'smooth' }); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { lens.scrollBy({ left: -step(), behavior: 'smooth' }); e.preventDefault(); }
+    });
+    lensStates.push(state);
   }
-  function lensState() {
-    var max = lens.scrollWidth - lens.clientWidth;
-    var fits = max <= 1;
-    prev.hidden = next.hidden = fits;
-    prev.disabled = lens.scrollLeft < 4;
-    next.disabled = lens.scrollLeft > max - 4;
+  setupLens('lens', 'lensPrev', 'lensNext');
+  setupLens('works', 'worksPrev', 'worksNext');
+  function lensState() { lensStates.forEach(function (f) { f(); }); }
+
+  /* ---------- Немые петли: грузятся и играют только в кадре ---------- */
+  var reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var loops = d.querySelectorAll('video.loop');
+  if (!reduce && 'IntersectionObserver' in w) {
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.src) { v.src = v.dataset.src; }
+          var p = v.play(); if (p && p.catch) p.catch(function () {});
+        } else if (!v.paused) v.pause();
+      });
+    }, { rootMargin: '120px 0px', threshold: .2 });
+    loops.forEach(function (v) { vio.observe(v); });
   }
-  prev.addEventListener('click', function () { lens.scrollBy({ left: -lensStep(), behavior: 'smooth' }); });
-  next.addEventListener('click', function () { lens.scrollBy({ left: lensStep(), behavior: 'smooth' }); });
-  lens.addEventListener('scroll', lensState, { passive: true });
-  lens.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight') { lens.scrollBy({ left: lensStep(), behavior: 'smooth' }); e.preventDefault(); }
-    if (e.key === 'ArrowLeft') { lens.scrollBy({ left: -lensStep(), behavior: 'smooth' }); e.preventDefault(); }
-  });
+
+  /* ---------- Окно видео: YouTube или свой ролик по клику ---------- */
+  var vm = d.getElementById('vmodal'), vmFrame = d.getElementById('vmFrame');
+  function closeVideo() { if (vm.open) vm.close(); }
+  if (vm && vm.showModal) {
+    d.querySelectorAll('[data-yt],[data-mp4]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        vmFrame.innerHTML = '';
+        var el;
+        if (b.dataset.yt) {
+          el = d.createElement('iframe');
+          el.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+          el.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        } else {
+          el = d.createElement('video');
+          el.src = b.dataset.mp4 + (ASSET_V ? '?v=' + ASSET_V : '');
+          el.controls = true; el.autoplay = true; el.playsInline = true;
+        }
+        el.title = b.textContent.trim();
+        vmFrame.appendChild(el);
+        vm.showModal();
+      });
+    });
+    d.getElementById('vmClose').addEventListener('click', closeVideo);
+    vm.addEventListener('click', function (e) { if (e.target === vm) closeVideo(); });
+    vm.addEventListener('close', function () { if (!vm.open) vmFrame.innerHTML = ''; });
+  } else if (vm) {
+    d.querySelectorAll('[data-yt]').forEach(function (b) {
+      b.addEventListener('click', function () { w.open('https://www.youtube.com/watch?v=' + b.dataset.yt, '_blank', 'noopener'); });
+    });
+  }
 
   /* ---------- Липкая панель: после половины героя, прячется на контактах ---------- */
   var sticky = d.getElementById('sticky');

@@ -60,6 +60,7 @@
     });
     lastTag = -1; mapTick();
     fitAll();
+    if (typeof plates !== 'undefined' && plates) plateLayout();
   }
   function setLang(lang, save) {
     if (!LANG_FILES[lang]) lang = 'ru';
@@ -104,7 +105,7 @@
       if (!tg) return;
       e.preventDefault();
       if (a.dataset.need || a.dataset.dir || a.dataset.obj) prefill(a.dataset);
-      var top = tg.getBoundingClientRect().top + w.scrollY - (id === 'hero' || id === 'map' ? 0 : hdrH() - 1);
+      var top = docTop(tg) - (id === 'hero' || id === 'map' ? 0 : hdrH() - 1);
       w.scrollTo({ top: top, behavior: 'smooth' });
       if (history.pushState) history.pushState(null, '', '#' + id);
     });
@@ -298,29 +299,98 @@
     form.classList.add('is-sent');
   });
 
+  /* ---------- Плиты: стопка экранов и скан лидара ---------- */
+  var root = d.documentElement;
+  var reduceM = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var secs = [].slice.call(d.querySelectorAll('main > section'));
+  var plates = secs.filter(function (s) { return s.classList.contains('plate'); });
+  var scans = [].slice.call(d.querySelectorAll('.scan'));
+  var heroEl = d.getElementById('hero');
+  var VH = root.clientHeight;
+  root.classList.add('js-scan');
+  /* Позиция в потоке без учёта залипания - для якорей */
+  function docTop(el) {
+    root.classList.add('pl-off');
+    var y = el.getBoundingClientRect().top + w.scrollY;
+    root.classList.remove('pl-off');
+    return y;
+  }
+  /* Высокая плита залипает нижним краем: top = экран - высота */
+  function plateLayout() {
+    if (!plates) return;
+    VH = root.clientHeight;
+    plates.forEach(function (p) {
+      var h = p.offsetHeight;
+      p._top = Math.min(0, VH - h);
+      p.style.top = p._top + 'px';
+      p.style.transformOrigin = '50% ' + Math.round(h <= VH ? h / 2 : h - VH / 2) + 'px';
+      p._h = h;
+    });
+    scans.forEach(function (e) { e._h = e.offsetHeight; });
+    plateTick();
+  }
+  function setVar(el, name, v) {
+    var k = '_' + name;
+    if (el[k] === v) return;
+    el[k] = v; el.style.setProperty(name, v);
+  }
+  function plateTick() {
+    /* чтение пакетом */
+    var tops = secs.map(function (s) { return s.getBoundingClientRect().top; });
+    var stops = scans.map(function (e) { return e.getBoundingClientRect().top; });
+    var y = w.scrollY || 0;
+    /* запись */
+    secs.forEach(function (s, i) {
+      var prev = secs[i - 1];
+      if (!prev || !prev.classList.contains('plate')) return;
+      var en = clamp(1 - tops[i] / VH);
+      setVar(s, '--enter', en.toFixed(3));
+      setVar(prev, '--exit', reduceM ? '0' : en.toFixed(3));
+      var gone = en >= 1;
+      if (gone !== prev.classList.contains('gone')) {
+        prev.classList.toggle('gone', gone);
+        prev.querySelectorAll('video').forEach(function (v) {
+          if (gone) v.pause();
+          else if (v.src && !reduceM) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+        });
+      }
+    });
+    var hh = heroEl._h || heroEl.offsetHeight;
+    setVar(heroEl, '--hs', reduceM ? '0' : clamp(y / (Math.max(0, hh - VH) + VH * .38)).toFixed(3));
+    scans.forEach(function (e, i) {
+      var pl = e._pl === undefined ? (e._pl = e.closest('.plate')) : e._pl;
+      var stuck = pl && y > 0 && Math.abs(tops[secs.indexOf(pl)] - (pl._top || 0)) < 2;
+      var p = reduceM || stuck ? 1 : clamp((VH * .85 - stops[i]) / (VH * .25 + Math.min(e._h || 400, VH) * .55));
+      var a = p;
+      setVar(e, '--sa', (a * 182).toFixed(1) + 'deg');
+      setVar(e, '--so', p <= 0 ? '0' : Math.min(1, (1 - p) * 5).toFixed(2));
+      e.classList.toggle('done', p >= 1);
+    });
+  }
+
   /* ---------- Один цикл чтения на кадр ---------- */
   var ticking = false;
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    w.requestAnimationFrame(function () { hdrState(); stickyState(); ticking = false; });
+    w.requestAnimationFrame(function () { hdrState(); stickyState(); plateTick(); ticking = false; });
   }
   w.addEventListener('scroll', onScroll, { passive: true });
   var lastW = w.innerWidth;
   w.addEventListener('resize', function () {
     if (w.innerWidth === lastW) return;
     lastW = w.innerWidth;
-    lensState(); fitAll(); onScroll();
+    lensState(); fitAll(); plateLayout(); onScroll();
   });
-  w.addEventListener('load', function () { lensState(); });
-  if (d.fonts && d.fonts.ready) d.fonts.ready.then(fitAll);
+  w.addEventListener('load', function () { lensState(); plateLayout(); });
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { fitAll(); plateLayout(); });
 
   /* Старт: ?lang= главнее сохранённого выбора; язык браузера не угадываем */
   var forced = (location.search.match(/[?&]lang=(ru|kk|en)/) || [])[1];
   var saved = '';
   try { saved = localStorage.getItem('lang') || ''; } catch (e) {}
   var startLang = forced || saved || 'ru';
-  hdrState(); mapTick(); lensState(); stickyState();
+  hdrState(); mapTick(); lensState(); stickyState(); plateLayout();
   if (startLang !== 'ru') setLang(startLang, false);
   else { d.querySelectorAll('.lang-b').forEach(function (b) { b.classList.toggle('is-active', b.dataset.lang === 'ru'); }); fitAll(); }
 })();

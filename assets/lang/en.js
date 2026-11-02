@@ -1,5 +1,14 @@
 /* CleanTech by VISTA - English dictionary. Loaded only when EN is chosen or ?lang=en. */
 window.SITE_EN = {
+  "co.k": "Astana · Almaty · Kostanay",
+  "fm.k": "Request",
+  "tm.k": "Terms",
+  "pr.k": "Rollout",
+  "map.k": "Robot navigation",
+  "nt.k": "YANGZI SC50 · warehouse",
+  "cl.k": "Clients",
+  "eq.k": "Equipment",
+  "ob.k": "By site",
   "meta.title": "CleanTech by VISTA - cleaning robots, scrubber dryers and facade-washing drones in Kazakhstan",
   "meta.desc": "Comac SELF.Y, YANGZI and PUDU scrubber robots, water-recycling scrubber dryers, HOCH facade-washing drones. Free site survey and setup, VISTA service centre, delivery across Kazakhstan since 2010.",
   "nav.equipment": "Equipment",
@@ -9,7 +18,7 @@ window.SITE_EN = {
   "nav.contacts": "Contacts",
   "hero.kicker": "Kazakhstan · supply<span class=\"k-long\">, deployment and service</span> · since 2010",
   "hero.h1": "<span>Cleaning robots and washing</span> <span>systems for large facilities</span>",
-  "hero.lead": "Comac SELF.Y from Italy, YANGZI and PUDU robots, HOCH drones for facades. Site survey and setup free of charge, in-house service centre, 10,000+ machines delivered since 2010.",
+  "hero.lead": "Comac SELF.Y<span class=\"l-long\"> from Italy</span>, YANGZI and PUDU robots, HOCH drones<span class=\"l-long\"> for facades</span>. Site survey and setup free of charge<span class=\"l-long\">, in-house service centre</span>, 10,000+ machines delivered<span class=\"l-long\"> since 2010</span>.",
   "hud.spec": "Lidars · 3D cameras · ultrasound · 1,710&nbsp;m²/h",
   "tr.k": "VISTA equipment works at",
   "tr.1": "Astana Airport",

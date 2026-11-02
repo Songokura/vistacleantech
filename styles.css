@@ -824,3 +824,66 @@ main>section{position:relative}
 @media (max-width:380px) and (max-height:780px){.hero-h{font-size:32px}}
 @media (max-width:380px) and (max-height:700px){.hero-h{font-size:31px}}
 @media (max-width:760px) and (max-height:700px){.hero-in{padding-top:calc(var(--hdr) + var(--bot-h) + 36px)}}
+
+/* ==========================================================================
+   Чередование тёмных и светлых секций (02.11.2026): светлый - холодная
+   сталь с голубым светом, не белый лист; карточки белые
+   ========================================================================== */
+.sec-lt{--lt-line:#D8DFE7;background:radial-gradient(ellipse 55% 60% at 88% 0,rgba(79,180,233,.13),transparent 70%),#EAF0F5;color:var(--text)}
+.sec-lt2{background:radial-gradient(ellipse 55% 60% at 10% 0,rgba(79,180,233,.11),transparent 70%),#F2F5F8}
+.sec-lt .lead,.sec-lt .cat-head p,.sec-lt .cat-foot p,.sec-lt .dir-txt p,.sec-lt .cap,.sec-lt .obj > span{color:var(--mute)}
+.sec-lt .kicker{color:var(--blue-d)}
+.sec-lt .ticks li::before{border-color:var(--blue)}
+.sec-lt .obj b::after{background:var(--blue)}
+.sec-lt .obj-ph{background:var(--fog)}
+.sec-lt .lens-b{border-color:#BFC8D2;color:var(--text)}
+.sec-lt .lens-b:hover{border-color:var(--blue);color:var(--blue-d)}
+.sec-lt .ig-more{border-color:#BFC8D2;color:var(--text);background:rgba(255,255,255,.5)}
+.sec-lt .ig-more em{color:var(--mute)}
+.sec-lt .ig-more:hover{border-color:var(--text)}
+.sec-lt .btn-wa-o,.sec-lt .btn-ghost-d,.sec-lt .btn-light{background:#fff;color:var(--text);border-color:#C9D2DB}
+.sec-lt .btn-wa-o:hover,.sec-lt .btn-ghost-d:hover,.sec-lt .btn-light:hover{border-color:var(--text)}
+.sec-lt .vbtn{border-color:#C3CCD6;color:var(--text);background:rgba(255,255,255,.6)}
+.sec-lt .vbtn svg{color:var(--blue)}
+.sec-lt .vbtn:hover{border-color:var(--text)}
+
+/* Каталог на светлом: белые карточки, свет под роботом, круги скана тёмно-голубые */
+.sec-lt.sec-show{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1600' fill='none' stroke='%231776B6' stroke-opacity='.07'%3E%3Ccircle cx='800' cy='0' r='140'/%3E%3Ccircle cx='800' cy='0' r='280'/%3E%3Ccircle cx='800' cy='0' r='420'/%3E%3Ccircle cx='800' cy='0' r='560'/%3E%3Ccircle cx='800' cy='0' r='700'/%3E%3Ccircle cx='800' cy='0' r='840'/%3E%3Ccircle cx='800' cy='0' r='980'/%3E%3Ccircle cx='800' cy='0' r='1120'/%3E%3Ccircle cx='800' cy='0' r='1260'/%3E%3Ccircle cx='800' cy='0' r='1400'/%3E%3Ccircle cx='800' cy='0' r='1540'/%3E%3C/svg%3E") 50% 0/1600px no-repeat,radial-gradient(ellipse 55% 60% at 10% 0,rgba(79,180,233,.11),transparent 70%),#F2F5F8}
+.sec-lt .cat-foot{border-top-color:var(--lt-line)}
+.sec-lt.sec-show .mdl{background:linear-gradient(180deg,#FFFFFF 0%,#F7F9FB 100%);border-color:#DCE3EA;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.sec-lt.sec-show .mdl-ph{background:radial-gradient(ellipse 62% 42% at 50% 86%,rgba(79,180,233,.22),transparent 72%),radial-gradient(ellipse 90% 70% at 50% 100%,rgba(79,180,233,.08),transparent 70%)}
+.sec-lt.sec-show .mdl-ph::before{background:radial-gradient(ellipse at center,rgba(15,30,45,.28),transparent 70%)}
+.sec-lt.sec-show .mdl-ph img{filter:drop-shadow(0 12px 12px rgba(15,30,45,.18))}
+.sec-lt.sec-show .mdl-k{color:var(--blue-d)}
+.sec-lt.sec-show .mdl-t,.sec-lt.sec-show .mdl-wa{color:var(--text)}
+.sec-lt.sec-show .mdl-s{color:#46515D}
+@media (hover:hover) and (pointer:fine){
+  .sec-lt.sec-show .mdl:hover{border-color:rgba(23,118,182,.45);box-shadow:0 24px 50px -28px rgba(15,30,45,.35)}
+}
+
+/* Заказчики на светлом */
+.sec-lt.sec-clients{border-top:0}
+.sec-lt .cl-col h3{font-family:var(--mono);color:var(--blue-d);border-bottom-color:#C9D2DB}
+.sec-lt .cl-col li{color:var(--text)}
+.sec-lt .cl-col li:not(:last-child)::after{color:#A9B3BD}
+
+/* Дроны и вода на светлом */
+.sec-lt .dr-pair{background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(79,180,233,.16),transparent 70%),#fff;border:1px solid #DCE3EA}
+.sec-lt .dr-pair div + div{border-left-color:#E3E8EE}
+.sec-lt .dr-pair img{filter:drop-shadow(0 14px 14px rgba(15,30,45,.2))}
+.sec-lt .dr-pair b{color:var(--blue-d)}
+.sec-lt .dr-tab th,.sec-lt .dr-tab td{border-bottom-color:var(--lt-line)}
+.sec-lt .dr-tab thead th{color:var(--mute);font-family:var(--mono)}
+.sec-lt .dr-tab td{font-family:var(--mono);font-size:14px}
+.sec-lt .dir-media{background:var(--fog)}
+
+/* Форма на светлом: белая карточка, светлые поля */
+.sec-lt .form{background:#fff;border-color:#DCE3EA;box-shadow:0 30px 70px -40px rgba(15,30,45,.3)}
+.sec-lt .f,.sec-lt .f-check,.sec-lt .f-note{color:var(--mute)}
+.sec-lt .f input,.sec-lt .f select,.sec-lt .f textarea{background:#F4F7FA;border-color:#D3DAE2;color:var(--text)}
+.sec-lt .f input::placeholder,.sec-lt .f textarea::placeholder{color:#626D79}
+.sec-lt .f input:focus,.sec-lt .f select:focus,.sec-lt .f textarea:focus{border-color:var(--blue)}
+.sec-lt .f-err{color:#C62828}
+
+/* Условия: прежний светлый блок в общей гамме */
+.sec-lt .terms dt{color:var(--text)}

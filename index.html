@@ -28,10 +28,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Onest:wght@400;500&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero.webp?v=20261030" media="(min-width: 761px)">
-<link rel="preload" as="image" href="assets/hero-m.webp?v=20261030" media="(max-width: 760px)">
-<link rel="stylesheet" href="styles.css?v=20261030-3">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@500;600&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/cut/comac.webp?v=20261102" media="(min-width: 761px)">
+<link rel="preload" as="image" href="assets/cut/comac-m.webp?v=20261102" media="(max-width: 760px)">
+<link rel="stylesheet" href="styles.css?v=20261102-1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -114,11 +114,20 @@
 <main>
 
 <section class="hero" id="hero">
-  <picture class="hero-ph">
-    <source media="(max-width: 760px)" srcset="assets/hero-m.webp?v=20261030">
-    <img src="assets/hero.webp?v=20261030" alt="Робот-поломойка Comac SELF.Y в проходе супермаркета" width="1800" height="1200" fetchpriority="high">
-  </picture>
   <div class="hero-in">
+    <div class="stage" aria-hidden="true">
+      <div class="st-glow"></div>
+      <div class="st-3d"><div class="st-plane"><i class="st-grid"></i><i class="st-sweep"></i><i class="st-ring"></i><i class="st-ring"></i><i class="st-ring"></i></div></div>
+    </div>
+    <figure class="hero-bot">
+      <picture>
+        <source media="(max-width: 760px)" srcset="assets/cut/comac-m.webp?v=20261102">
+        <img src="assets/cut/comac.webp?v=20261102" alt="Робот-поломойка Comac SELF.Y" width="803" height="1300" fetchpriority="high">
+      </picture>
+      <span class="hud hud-1"><i></i><b data-i="hud.1">Лидары и 3D-камеры</b></span>
+      <span class="hud hud-2"><i></i><b data-i="hud.2">Видит людей и стекло</b></span>
+      <span class="hud hud-3"><i></i><b data-i="hud.3">Маршрут без программирования</b></span>
+    </figure>
     <p class="kicker hero-k"><span data-i="hero.kicker">Казахстан · поставка<span class="k-long">, внедрение и сервис</span> · с 2010 года</span></p>
     <h1 class="hero-h" data-i="hero.h1" data-fit><span>Роботы-уборщики и системы</span> <span>мойки для больших объектов</span></h1>
     <p class="hero-lead" data-i="hero.lead">Comac SELF.Y из Италии, роботы YANGZI и PUDU, дроны HOCH для фасадов. Подбор под объект и наладка - бесплатно, свой сервис-центр, 10&nbsp;000+ единиц техники поставлено с 2010 года.</p>
@@ -237,7 +246,7 @@
   </div>
 </section>
 
-<section class="sec sec-light" id="equipment">
+<section class="sec sec-dark sec-show" id="equipment">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2" data-i="eq.h2" data-fit>Выбрать оборудование</h2>
@@ -253,7 +262,7 @@
       </div>
       <div class="cat-grid">
       <article class="mdl" id="m-sc80">
-        <div class="mdl-ph"><img src="assets/m-sc80.webp" alt="YANGZI SC80 - автономная поломоечная машина в зале" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/sc80.webp?v=20261102" alt="YANGZI SC80 - автономная поломоечная машина" width="472" height="560" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.sc80.k">YANGZI · робот-поломойка</p>
           <h4 class="mdl-t">SC80</h4>
@@ -262,7 +271,7 @@
         </div>
       </article>
       <article class="mdl" id="m-sc50">
-        <div class="mdl-ph"><img src="assets/m-sc50.webp" alt="YANGZI SC50 - компактный робот-поломойка" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/sc50.webp?v=20261102" alt="YANGZI SC50 - компактный робот-поломойка" width="370" height="560" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.sc50.k">YANGZI · робот-поломойка</p>
           <h4 class="mdl-t">SC50</h4>
@@ -271,7 +280,7 @@
         </div>
       </article>
       <article class="mdl" id="m-s100n">
-        <div class="mdl-ph"><img src="assets/m-s100n.webp" alt="YANGZI S100N - автономный подметальщик на улице" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/s100n.webp?v=20261102" alt="YANGZI S100N - автономный подметальщик" width="720" height="523" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.s100n.k">YANGZI · робот-подметальщик</p>
           <h4 class="mdl-t">S100N</h4>
@@ -280,7 +289,7 @@
         </div>
       </article>
       <article class="mdl" id="m-bg1">
-        <div class="mdl-ph"><img src="assets/m-bg1.webp" alt="PUDU BG1 - робот-поломойка в подземном паркинге" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/bg1.webp?v=20261102" alt="PUDU BG1 - робот-поломойка" width="530" height="560" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.bg1.k">PUDU · подметание и мойка за проход</p>
           <h4 class="mdl-t">BG1</h4>
@@ -289,7 +298,7 @@
         </div>
       </article>
       <article class="mdl" id="m-cc1">
-        <div class="mdl-ph"><img src="assets/m-cc1.webp" alt="PUDU CC1 и CC1 Pro в торговом зале" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/cc1.webp?v=20261102" alt="PUDU CC1 - компактный робот 4-в-1" width="576" height="560" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.cc1.k">PUDU · компактный робот 4-в-1</p>
           <h4 class="mdl-t">CC1 / CC1 Pro</h4>
@@ -298,7 +307,7 @@
         </div>
       </article>
       <article class="mdl" id="m-mt1">
-        <div class="mdl-ph"><img src="assets/m-mt1.webp" alt="PUDU MT1 - робот-подметальщик и сменные модули" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/mt1.webp?v=20261102" alt="PUDU MT1 - робот-подметальщик" width="720" height="454" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.mt1.k">PUDU · робот-подметальщик с ИИ</p>
           <h4 class="mdl-t">MT1</h4>
@@ -307,7 +316,7 @@
         </div>
       </article>
       <article class="mdl" id="m-tn70">
-        <div class="mdl-ph"><img src="assets/m-tn70.webp" alt="Автономный поломоечный робот TN70 PRO" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/tn70.webp?v=20261102" alt="Автономный поломоечный робот TN70 PRO" width="516" height="560" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.tn70.k">Серия TN · робот-поломойка</p>
           <h4 class="mdl-t">TN70 PRO</h4>
@@ -316,7 +325,7 @@
         </div>
       </article>
       <article class="mdl" id="m-tn10">
-        <div class="mdl-ph"><img src="assets/m-tn10.webp" alt="Компактный робот TN10 PRO" width="900" height="675" loading="lazy" decoding="async"></div>
+        <div class="mdl-ph"><img src="assets/cut/tn10.webp?v=20261102" alt="Компактный робот TN10 PRO" width="589" height="560" loading="lazy" decoding="async"></div>
         <div class="mdl-tx">
           <p class="mdl-k" data-i="m.tn10.k">Серия TN · компактный 3-в-1</p>
           <h4 class="mdl-t">TN10 PRO</h4>
@@ -364,7 +373,7 @@
         </ul>
         <div class="dir-cta">
           <a class="btn btn-primary" href="#form" data-need="Рассчитать экономику" data-dir="Машины с повторным использованием воды" data-i="rew.btn">Рассчитать расход воды</a>
-          <a class="btn btn-wa-l" href="https://wa.me/77018770033?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D1%8E%D1%82%20%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D1%8B%20%D1%81%20%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%BC%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20%D0%B2%D0%BE%D0%B4%D1%8B" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#ic-wa"/></svg><span data-i="wa.price">Узнать цену в WhatsApp</span></a>
+          <a class="btn btn-wa-o" href="https://wa.me/77018770033?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D1%8E%D1%82%20%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D1%8B%20%D1%81%20%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%BC%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20%D0%B2%D0%BE%D0%B4%D1%8B" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#ic-wa"/></svg><span data-i="wa.price">Узнать цену в WhatsApp</span></a>
         </div>
       </div>
     </div>
@@ -374,8 +383,8 @@
     <div class="wrap dir-in">
       <figure class="dir-fig rv">
         <div class="dir-media dr-pair">
-          <div><img src="assets/hoch-hxc.webp" alt="Моющий дрон HOCH HXC" width="785" height="475" loading="lazy" decoding="async"><b>HXC</b></div>
-          <div><img src="assets/hoch-hyc.webp" alt="Моющий дрон HOCH HYC" width="799" height="434" loading="lazy" decoding="async"><b>HYC</b></div>
+          <div><img src="assets/cut/hoch-hxc.webp?v=20261102" alt="Моющий дрон HOCH HXC" width="762" height="452" loading="lazy" decoding="async"><b>HXC</b></div>
+          <div><img src="assets/cut/hoch-hyc.webp?v=20261102" alt="Моющий дрон HOCH HYC" width="776" height="411" loading="lazy" decoding="async"><b>HYC</b></div>
         </div>
         <figcaption class="cap" data-i="dr.cap">Моющие дроны HOCH: HXC и более мощный HYC</figcaption>
       </figure>
@@ -393,20 +402,20 @@
           <li data-i="dr.l4">Двойной RTK и радар препятствий - точный маршрут вдоль фасада</li>
         </ul>
         <p class="vrow"><span data-i="dr.vk">Видео:</span>
-          <button type="button" class="vbtn vbtn-l" data-mp4="assets/video/hoch-route.mp4"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span data-i="dr.v1">Как задаётся маршрут</span></button>
-          <button type="button" class="vbtn vbtn-l" data-yt="l8uey-ADXQI"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span data-i="dr.v2">HXC в работе</span></button>
-          <button type="button" class="vbtn vbtn-l" data-yt="VhszPt6AMC0"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span data-i="dr.v3">HYC в работе</span></button>
+          <button type="button" class="vbtn" data-mp4="assets/video/hoch-route.mp4"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span data-i="dr.v1">Как задаётся маршрут</span></button>
+          <button type="button" class="vbtn" data-yt="l8uey-ADXQI"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span data-i="dr.v2">HXC в работе</span></button>
+          <button type="button" class="vbtn" data-yt="VhszPt6AMC0"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span data-i="dr.v3">HYC в работе</span></button>
         </p>
         <div class="dir-cta">
           <a class="btn btn-primary" href="#form" data-need="Запросить демонстрацию" data-dir="Дроны HOCH для мойки фасадов" data-i="dr.btn">Запросить демонстрацию</a>
-          <a class="btn btn-wa-l" href="https://wa.me/77018770033?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D1%8E%D1%82%20%D0%BC%D0%BE%D1%8E%D1%89%D0%B8%D0%B5%20%D0%B4%D1%80%D0%BE%D0%BD%D1%8B%20HOCH%20%D0%B4%D0%BB%D1%8F%20%D1%84%D0%B0%D1%81%D0%B0%D0%B4%D0%BE%D0%B2.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D1%86%D0%B5%D0%BD%D1%83" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#ic-wa"/></svg><span data-i="wa.price">Узнать цену в WhatsApp</span></a>
+          <a class="btn btn-wa-o" href="https://wa.me/77018770033?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D1%8E%D1%82%20%D0%BC%D0%BE%D1%8E%D1%89%D0%B8%D0%B5%20%D0%B4%D1%80%D0%BE%D0%BD%D1%8B%20HOCH%20%D0%B4%D0%BB%D1%8F%20%D1%84%D0%B0%D1%81%D0%B0%D0%B4%D0%BE%D0%B2.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D1%86%D0%B5%D0%BD%D1%83" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#ic-wa"/></svg><span data-i="wa.price">Узнать цену в WhatsApp</span></a>
         </div>
       </div>
     </div>
   </article>
 </section>
 
-<section class="sec sec-dark" id="servis">
+<section class="sec sec-dark sec-steel" id="servis">
   <div class="wrap dir-in dir-in-s">
     <div class="dir-txt">
       <p class="kicker" data-i="sv.k">Сервис-центр VISTA</p>
@@ -426,7 +435,7 @@
   </div>
 </section>
 
-<section class="sec sec-light" id="objects">
+<section class="sec sec-dark" id="objects">
   <div class="wrap">
     <div class="sec-head sec-head-row">
       <div>
@@ -448,7 +457,7 @@
   </div>
 </section>
 
-<section class="sec sec-light sec-why" id="why">
+<section class="sec sec-dark sec-steel sec-why" id="why">
   <div class="wrap why-in">
     <div class="why-media rv">
       <img src="assets/vista-van.webp" alt="Грузовик VISTA и поломоечные машины Comac перед отгрузкой" width="536" height="426" loading="lazy" decoding="async">
@@ -468,7 +477,7 @@
   </div>
 </section>
 
-<section class="sec sec-light sec-clients" id="clients">
+<section class="sec sec-dark sec-clients" id="clients">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2" data-i="cl.h2" data-fit>Где работает техника VISTA</h2>
@@ -483,7 +492,7 @@
   </div>
 </section>
 
-<section class="sec sec-dark" id="process">
+<section class="sec sec-dark sec-steel" id="process">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2" data-i="pr.h2" data-fit>Как проходит подбор и внедрение</h2>
@@ -614,6 +623,6 @@
   <a class="st-ig" href="https://www.instagram.com/vista.clean/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20"><use href="#ic-ig"/></svg></a>
 </nav>
 
-<script src="script.js?v=20261030-3" defer></script>
+<script src="script.js?v=20261102-1" defer></script>
 </body>
 </html>

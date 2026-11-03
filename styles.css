@@ -887,3 +887,9 @@ main>section{position:relative}
 
 /* Условия: прежний светлый блок в общей гамме */
 .sec-lt .terms dt{color:var(--text)}
+
+/* Логотип клиента целиком, без надписи CleanTech (правка 03.11.2026) */
+.brand-vista{height:34px;width:auto;margin-top:0}
+.ftr .brand-vista{height:30px}
+@media (min-width:761px){.hdr .brand-vista{height:38px}}
+@media (max-width:380px){.hdr .brand-vista{height:30px}}

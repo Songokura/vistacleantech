@@ -511,7 +511,7 @@ body.menu-open .burger span:last-child{transform:translateY(-4px) rotate(-45deg)
 }
 
 @media (prefers-reduced-motion:reduce){
-  .hero-h span,.hero-lead,.hero-cta,.hero-ig,.ways{animation:none;opacity:1;transform:none}
+  .hero-h span,.hero-sub,.hero-lead,.hero-cta,.hero-ig,.ways{animation:none;opacity:1;transform:none}
   .hero-ph img{animation:none;transform:none}
   .rv{opacity:1;transform:none;transition:none}
   .map-steps li span{transition:none}
@@ -893,3 +893,36 @@ main>section{position:relative}
 .ftr .brand-vista{height:30px}
 @media (min-width:761px){.hdr .brand-vista{height:38px}}
 @media (max-width:380px){.hdr .brand-vista{height:30px}}
+
+/* Правки клиента 04.11.2026: новый текст героя, блок «Интеллектуальная уборка», описания моделей */
+.hero-h{font-size:clamp(34px,3.1vw,46px);line-height:1.08}
+.hero-sub{margin-top:20px;font-family:var(--disp);font-weight:500;font-size:clamp(18px,1.45vw,22px);line-height:1.35;letter-spacing:-.01em;color:#fff;opacity:0;animation:rise .9s var(--ease) .16s forwards}
+.hero-lead{margin-top:16px}
+.hero-lead2{margin-top:10px}
+.no-intro .hero-sub{animation:none;opacity:1;transform:none}
+.sec-intro{padding-bottom:0}
+.sec-intro .sec-head{margin-bottom:clamp(36px,4vw,56px)}
+.intro-sub{margin-top:18px;font-family:var(--disp);font-weight:500;font-size:clamp(19px,1.6vw,24px);line-height:1.35;letter-spacing:-.01em;color:#fff}
+.sec-intro .lead{color:var(--mute-d)}
+.sec-intro .ways{animation:none;opacity:1;background:transparent}
+.mdl-d{margin-top:8px;font-size:14px;line-height:1.45;color:var(--mute)}
+.sec-lt .mdl-d{color:#4E5966}
+.sec-comac .h2{font-size:clamp(28px,2.5vw,40px)}
+@media (min-width:1081px){
+  .cm-txt{grid-template-rows:auto auto auto 1fr}
+  .cm-txt .cm-p2{grid-column:1;grid-row:3;margin-top:12px}
+  .cm-txt .dir-cta{grid-row:4}
+  .cm-txt .ticks{grid-row:3 / 5}
+}
+.cm-p2{margin-top:12px}
+@media (max-width:760px){
+  .hero .hero-h{font-size:clamp(23px,6.3vw,27px);line-height:1.1}
+  .hero-sub{margin-top:10px;font-size:15px}
+  .hero-lead{margin-top:8px;font-size:14px}
+  .hero .hero-cta{margin-top:18px}
+  .hero-lead2{display:none}
+  .intro-sub{font-size:18px}
+  .mdl-d{font-size:13px;margin-top:6px}
+}
+@media (max-width:380px){html[lang="kk"] .hero .hero-h{font-size:22px}}
+@media (max-width:760px) and (max-height:780px){.hero-lead{display:none}}

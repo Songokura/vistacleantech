@@ -343,7 +343,8 @@
     secs.forEach(function (s, i) {
       var prev = secs[i - 1];
       if (!prev || !prev.classList.contains('plate')) return;
-      var en = clamp(1 - tops[i] / VH);
+      /* плита ниже экрана (герой на большом мониторе): фаза от её высоты, иначе она тускнеет до прокрутки */
+      var en = clamp(1 - tops[i] / Math.min(VH, prev._h || VH));
       setVar(s, '--enter', en.toFixed(3));
       setVar(prev, '--exit', reduceM ? '0' : en.toFixed(3));
       var gone = en >= 1;

@@ -926,3 +926,10 @@ main>section{position:relative}
 }
 @media (max-width:380px){html[lang="kk"] .hero .hero-h{font-size:22px}}
 @media (max-width:760px) and (max-height:780px){.hero-lead{display:none}}
+
+/* Герой на десктопе: высота по содержимому, без пустой полосы сверху на больших мониторах (10.11.2026) */
+@media (min-width:761px){
+  .hero{min-height:0;justify-content:flex-start}
+  .hero-in{padding-top:calc(var(--hdr) + clamp(36px,6vh,88px))}
+  .hero.plate{margin-bottom:0}
+}

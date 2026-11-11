@@ -989,3 +989,17 @@ main>section{position:relative}
   .sec-show .mdl-wide .mdl-s li:nth-child(3){display:list-item}
 }
 .sec-lt.sec-show .mdl-wide .mdl-ph{background:radial-gradient(ellipse 62% 50% at 50% 52%,rgba(79,180,233,.16),transparent 72%)}
+
+/* Герой, десктоп (11.11.2026, правка владельца «элементы справа выше, подпись под аппаратом без прокрутки»):
+   ряд дрон + V200 начинается на уровне кикера, SELF.Y сразу под ним, высота робота считается от окна,
+   чтобы подпись под ним была в первом экране; группа стоит в колонке шапки */
+@media (min-width:761px){
+  .hero{--fl:min(220px,13vw);--ft:calc(var(--hdr) + clamp(36px,6vh,88px));--bt:calc(var(--ft) + var(--fl) * .558 + 44px);--bot-h:clamp(240px,calc(100svh - var(--bt) - 78px),440px);--fl-r:0px;--bot-r:calc(var(--fl) - var(--bot-h) * .309)}
+  .fleet{top:var(--ft);bottom:auto;right:0}
+  .hero-bot,.stage{top:var(--bt);bottom:auto}
+  .hero-in{padding-right:calc(var(--fl) * 2 + 56px);min-height:calc(var(--bt) + var(--bot-h) + 70px)}
+}
+@media (min-width:761px) and (max-width:1180px){
+  .hero{--fl:min(170px,16vw)}
+  .hero-in{padding-right:calc(var(--fl) * 2 + 28px)}
+}

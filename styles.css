@@ -943,25 +943,25 @@ main>section{position:relative}
   .hero{--bot-h:min(38svh,320px);--fl-out:0px;--fl-r:14px}
   .hero-in{padding-right:calc(var(--bot-h) * 1.32 + 40px)}
 }
-.fl{position:absolute;z-index:1;margin:0;width:var(--fl);opacity:0;animation:rise 1.2s var(--ease) .3s forwards}
-.fl-d{right:calc(var(--fl-r) + var(--fl));top:calc(var(--hdr) + 14px);translate:0 calc(var(--hs,0) * -34px)}
-.fl-v{right:var(--fl-r);top:calc(var(--hdr) + 40px);translate:0 calc(var(--hs,0) * -18px)}
-.fl-f{position:relative;will-change:transform}
+.fleet{position:absolute;z-index:1;right:var(--fl-r);bottom:calc(var(--bot-b) + var(--bot-h) + 18px);width:calc(var(--fl) * 2);display:flex;align-items:flex-end;justify-content:space-between;translate:0 calc(var(--hs,0) * -26px)}
+.fl{position:relative;margin:0;width:calc(var(--fl) * .95);opacity:0;animation:rise 1.2s var(--ease) .3s forwards}
+.fl-v{animation-delay:.42s}
+.fl-f{position:relative;aspect-ratio:16/9.4;will-change:transform}
 .fl-d .fl-f{animation:fl-hov 5.2s ease-in-out infinite}
-.fl-v .fl-f{animation:fl-climb 9s ease-in-out infinite}
-.fl img{display:block;width:100%;height:auto;filter:drop-shadow(0 12px 16px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(79,180,233,.2))}
+.fl-v .fl-f{animation:fl-climb 6.4s ease-in-out -2s infinite}
+.fl img{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 12px 16px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(79,180,233,.2))}
 .fl-v::before{content:"";position:absolute;z-index:-1;inset:-34% -6% -22%;background:linear-gradient(90deg,transparent 49.6%,rgba(190,225,245,.26) 49.6% 50.4%,transparent 50.4%),linear-gradient(180deg,transparent 49.6%,rgba(190,225,245,.2) 49.6% 50.4%,transparent 50.4%),linear-gradient(160deg,rgba(120,190,235,.3),rgba(79,180,233,.08));-webkit-mask-image:radial-gradient(closest-side,#000 30%,transparent 100%);mask-image:radial-gradient(closest-side,#000 30%,transparent 100%)}
 .fl-v .fl-f::before,.fl-v .fl-f::after{content:"";position:absolute;z-index:-1;top:-52px;bottom:62%;width:1px;background:linear-gradient(180deg,transparent,rgba(200,232,250,.65) 55%)}
 .fl-v .fl-f::before{left:11%}
 .fl-v .fl-f::after{right:11%}
 .fl-t{margin-top:8px;text-align:center;white-space:nowrap;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:#9FD3F2}
-@keyframes fl-hov{0%,100%{transform:translateY(-6px) rotate(-.8deg)}50%{transform:translateY(7px) rotate(.8deg)}}
-@keyframes fl-climb{0%,100%{transform:translateY(-12px)}50%{transform:translateY(12px)}}
+@keyframes fl-hov{0%,100%{transform:translateY(-4px) rotate(-.6deg)}50%{transform:translateY(4px) rotate(.6deg)}}
+@keyframes fl-climb{0%,100%{transform:translateY(-5px)}50%{transform:translateY(5px)}}
 .no-intro .fl{animation:none;opacity:1}
 @media (max-width:760px){
   .hero{--fl:min(29vw,calc(var(--bot-h) * .74))}
-  .fl-d{right:auto;left:8px;top:calc(var(--hdr) + 12px)}
-  .fl-v{right:8px;top:calc(var(--hdr) + 24px)}
+  .fleet{left:10px;right:10px;width:auto;top:calc(var(--hdr) + 18px);bottom:auto;translate:none}
+  .fl{width:var(--fl)}
   .fl img{filter:none}
   .fl-v .fl-f::before,.fl-v .fl-f::after{top:-16px}
   .hero-bot,.stage{height:calc(var(--bot-h) * .74);width:calc(var(--bot-h) * .4573);margin-left:calc(var(--bot-h) * -.2287);top:calc(var(--hdr) + 6px + var(--bot-h) * .26)}

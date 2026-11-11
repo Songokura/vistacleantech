@@ -943,6 +943,8 @@ main>section{position:relative}
   .hero{--bot-h:min(38svh,320px);--fl-out:0px;--fl-r:14px}
   .hero-in{padding-right:calc(var(--bot-h) * 1.32 + 40px)}
 }
+/* Невысокие окна ноутбуков (1280x720, 1366x768): робот с подписью поднят, подпись вровень с низом кнопок, в первом экране (11.11.2026) */
+@media (min-width:761px) and (max-height:790px){.hero{--bot-b:141px}}
 .fleet{position:absolute;z-index:1;right:var(--fl-r);bottom:calc(var(--bot-b) + var(--bot-h) + 18px);width:calc(var(--fl) * 2);display:flex;align-items:flex-end;justify-content:space-between;translate:0 calc(var(--hs,0) * -26px)}
 .fl{position:relative;margin:0;width:calc(var(--fl) * .95);opacity:0;animation:rise 1.2s var(--ease) .3s forwards}
 .fl-v{animation-delay:.42s}

@@ -48,6 +48,7 @@
       });
     });
     Object.keys(phNodes).forEach(function (k) { phNodes[k].forEach(function (el) { el.setAttribute('placeholder', t(k)); }); });
+    d.querySelectorAll('[data-i-aria]').forEach(function (el) { var v = t(el.getAttribute('data-i-aria')); if (v) el.setAttribute('aria-label', v.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ')); });
     d.documentElement.lang = lang;
     var dict = I18N[lang];
     d.title = dict['meta.title'] || META.ru.title;
@@ -385,6 +386,30 @@
   });
   w.addEventListener('load', function () { lensState(); plateLayout(); });
   if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { fitAll(); plateLayout(); });
+
+  /* ---------- Герой: карусель техники ---------- */
+  (function () {
+    var box = d.getElementById('hshow'); if (!box) return;
+    var sl = [].slice.call(box.querySelectorAll('.hs')), dots = [].slice.call(box.querySelectorAll('.hs-dot'));
+    var cur = 0, T = 4200, timer = null, hover = false;
+    var still = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    box.style.setProperty('--hs-t', T / 1000 + 's');
+    function show(i) {
+      cur = (i + sl.length) % sl.length;
+      sl.forEach(function (s, k) { s.classList.toggle('is-on', k === cur); if (k === cur) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true'); });
+      dots.forEach(function (b, k) { b.classList.remove('is-on'); b.removeAttribute('aria-current'); });
+      void box.offsetWidth;
+      dots[cur].classList.add('is-on'); dots[cur].setAttribute('aria-current', 'true');
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() { stop(); if (still || hover || d.hidden) return; box.classList.remove('is-paused'); timer = setInterval(function () { show(cur + 1); }, T); }
+    if (still) box.classList.add('is-static');
+    dots.forEach(function (b, k) { b.addEventListener('click', function () { show(k); start(); }); });
+    box.addEventListener('mouseenter', function () { hover = true; stop(); box.classList.add('is-paused'); });
+    box.addEventListener('mouseleave', function () { hover = false; show(cur); start(); });
+    d.addEventListener('visibilitychange', function () { if (d.hidden) stop(); else start(); });
+    start();
+  })();
 
   /* Старт: ?lang= главнее сохранённого выбора; язык браузера не угадываем */
   var forced = (location.search.match(/[?&]lang=(ru|kk|en)/) || [])[1];

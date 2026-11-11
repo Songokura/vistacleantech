@@ -934,43 +934,6 @@ main>section{position:relative}
   .hero.plate{margin-bottom:0}
 }
 
-/* ---------- Герой: дрон и робот для фасадов над SELF.Y (11.11.2026) ---------- */
-@media (min-width:761px){
-  .hero{--bot-h:min(46svh,440px);--fl:calc(var(--bot-h) * .66);--fl-out:clamp(0px,calc((100vw - var(--wrap)) / 2 - 40px),200px);--fl-r:calc(30px - var(--fl-out));--bot-r:calc(var(--fl-r) + var(--bot-h) * .351)}
-  .hero-in{padding-right:calc(var(--bot-h) * 1.32 + 90px - var(--fl-out))}
-}
-@media (min-width:761px) and (max-width:1180px){
-  .hero{--bot-h:min(38svh,320px);--fl-out:0px;--fl-r:14px}
-  .hero-in{padding-right:calc(var(--bot-h) * 1.32 + 40px)}
-}
-/* Невысокие окна ноутбуков (1280x720, 1366x768): робот с подписью поднят, подпись вровень с низом кнопок, в первом экране (11.11.2026) */
-@media (min-width:761px) and (max-height:790px){.hero{--bot-b:141px}}
-.fleet{position:absolute;z-index:1;right:var(--fl-r);bottom:calc(var(--bot-b) + var(--bot-h) + 18px);width:calc(var(--fl) * 2);display:flex;align-items:flex-end;justify-content:space-between;translate:0 calc(var(--hs,0) * -26px)}
-.fl{position:relative;margin:0;width:calc(var(--fl) * .95);opacity:0;animation:rise 1.2s var(--ease) .3s forwards}
-.fl-v{animation-delay:.42s}
-.fl-f{position:relative;aspect-ratio:16/9.4;will-change:transform}
-.fl-d .fl-f{animation:fl-hov 5.2s ease-in-out infinite}
-.fl-v .fl-f{animation:fl-climb 6.4s ease-in-out -2s infinite}
-.fl img{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 12px 16px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(79,180,233,.2))}
-.fl-v::before{content:"";position:absolute;z-index:-1;inset:-34% -6% -22%;background:linear-gradient(90deg,transparent 49.6%,rgba(190,225,245,.26) 49.6% 50.4%,transparent 50.4%),linear-gradient(180deg,transparent 49.6%,rgba(190,225,245,.2) 49.6% 50.4%,transparent 50.4%),linear-gradient(160deg,rgba(120,190,235,.3),rgba(79,180,233,.08));-webkit-mask-image:radial-gradient(closest-side,#000 30%,transparent 100%);mask-image:radial-gradient(closest-side,#000 30%,transparent 100%)}
-.fl-v .fl-f::before,.fl-v .fl-f::after{content:"";position:absolute;z-index:-1;top:-52px;bottom:62%;width:1px;background:linear-gradient(180deg,transparent,rgba(200,232,250,.65) 55%)}
-.fl-v .fl-f::before{left:11%}
-.fl-v .fl-f::after{right:11%}
-.fl-t{margin-top:8px;text-align:center;white-space:nowrap;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:#9FD3F2}
-@keyframes fl-hov{0%,100%{transform:translateY(-4px) rotate(-.6deg)}50%{transform:translateY(4px) rotate(.6deg)}}
-@keyframes fl-climb{0%,100%{transform:translateY(-5px)}50%{transform:translateY(5px)}}
-.no-intro .fl{animation:none;opacity:1}
-@media (max-width:760px){
-  .hero{--fl:min(29vw,calc(var(--bot-h) * .74))}
-  .fleet{left:10px;right:10px;width:auto;top:calc(var(--hdr) + 18px);bottom:auto;translate:none}
-  .fl{width:var(--fl)}
-  .fl img{filter:none}
-  .fl-v .fl-f::before,.fl-v .fl-f::after{top:-16px}
-  .hero-bot,.stage{height:calc(var(--bot-h) * .74);width:calc(var(--bot-h) * .4573);margin-left:calc(var(--bot-h) * -.2287);top:calc(var(--hdr) + 6px + var(--bot-h) * .26)}
-  .fl-t{font-size:13px}
-}
-@media (prefers-reduced-motion:reduce){.fl{animation:none;opacity:1}.fl .fl-f{animation:none}}
-
 /* ---------- Каталог: широкая карточка V200 (11.11.2026) ---------- */
 .mdl-wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr) minmax(0,1.2fr)}
 .sec-show .mdl-wide .mdl-ph{aspect-ratio:auto;height:auto;min-height:280px}
@@ -990,16 +953,35 @@ main>section{position:relative}
 }
 .sec-lt.sec-show .mdl-wide .mdl-ph{background:radial-gradient(ellipse 62% 50% at 50% 52%,rgba(79,180,233,.16),transparent 72%)}
 
-/* Герой, десктоп (11.11.2026, правка владельца «элементы справа выше, подпись под аппаратом без прокрутки»):
-   ряд дрон + V200 начинается на уровне кикера, SELF.Y сразу под ним, высота робота считается от окна,
-   чтобы подпись под ним была в первом экране; группа стоит в колонке шапки */
+
+/* ---------- Герой: карусель техники вместо одного робота (11.11.2026, голосовые Александра:
+   «то робот в центре, то дрон, то робот для окон, то для бассейнов» - чтобы не думали, что только поломойки) ---------- */
+.hshow .hs{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transform:translateY(16px) scale(.96);transition:opacity .6s var(--ease),transform .8s var(--ease),visibility 0s .6s}
+.hshow .hs.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .7s var(--ease) .12s,transform .9s var(--ease) .12s}
+.hshow .hs picture,.hshow .hs img{display:block;width:100%;height:100%}
+.hshow .hs img{object-fit:contain;object-position:50% 100%}
+.hshow .hs-air img{object-position:50% 42%;-webkit-box-reflect:none;animation:hs-hov 5s ease-in-out infinite}
+.hshow .hs-low img{object-position:50% 100%}
+@keyframes hs-hov{0%,100%{transform:translateY(-6px)}50%{transform:translateY(6px)}}
+.hshow figcaption{position:absolute;left:50%;top:calc(100% + 16px);transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:#DDE6EE}
+.hshow .hs-k{color:#9FD3F2}
+.hs-dots{position:absolute;left:50%;top:calc(100% + 40px);transform:translateX(-50%);display:flex;gap:4px}
+.hs-dot{position:relative;width:34px;height:24px;padding:0;border:0;background:none;cursor:pointer}
+.hs-dot::before{content:"";position:absolute;left:4px;right:4px;top:50%;height:3px;margin-top:-1.5px;border-radius:2px;background:rgba(159,211,242,.25)}
+.hs-dot::after{content:"";position:absolute;left:4px;right:4px;top:50%;height:3px;margin-top:-1.5px;border-radius:2px;background:var(--sky);transform:scaleX(0);transform-origin:0 50%}
+.hs-dot.is-on::after{transform:scaleX(1);transition:transform var(--hs-t,4.2s) linear}
+.hshow.is-paused .hs-dot.is-on::after,.hshow.is-static .hs-dot.is-on::after{transition:none}
+.hs-dot:focus-visible{outline:2px solid var(--sky);outline-offset:2px;border-radius:4px}
 @media (min-width:761px){
-  .hero{--fl:min(220px,13vw);--ft:calc(var(--hdr) + clamp(36px,6vh,88px));--bt:calc(var(--ft) + var(--fl) * .558 + 44px);--bot-h:clamp(240px,calc(100svh - var(--bt) - 78px),440px);--fl-r:0px;--bot-r:calc(var(--fl) - var(--bot-h) * .309)}
-  .fleet{top:var(--ft);bottom:auto;right:0}
-  .hero-bot,.stage{top:var(--bt);bottom:auto}
-  .hero-in{padding-right:calc(var(--fl) * 2 + 56px);min-height:calc(var(--bt) + var(--bot-h) + 70px)}
+  .hero{--ft:calc(var(--hdr) + clamp(36px,6vh,88px));--bot-h:clamp(280px,calc(100svh - var(--ft) - 104px),480px);--sw:min(440px,32vw,calc(var(--bot-h) * 1.05));--bot-r:0px}
+  .hero-bot,.stage{top:var(--ft);bottom:auto;right:0;width:var(--sw);height:var(--bot-h)}
+  .hero-in{padding-right:calc(var(--sw) + 56px);min-height:calc(var(--ft) + var(--bot-h) + 100px)}
 }
-@media (min-width:761px) and (max-width:1180px){
-  .hero{--fl:min(170px,16vw)}
-  .hero-in{padding-right:calc(var(--fl) * 2 + 28px)}
+@media (max-width:760px){
+  .hero{--sw:min(86vw,calc(var(--bot-h) * 1.3))}
+  .hero-bot,.stage{top:calc(var(--hdr) + 4px);height:calc(var(--bot-h) - 34px);width:var(--sw);margin-left:calc(var(--sw) / -2)}
+  .hshow figcaption{top:calc(100% + 2px);font-size:13px;line-height:1.4}
+  .hs-dots{top:calc(100% + 24px)}
+  .hs-dot{height:20px;width:30px}
 }
+@media (prefers-reduced-motion:reduce){.hshow .hs,.hshow .hs.is-on{transition:none;transform:none}.hshow .hs-air img{animation:none}}

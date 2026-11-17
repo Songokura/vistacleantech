@@ -9,4 +9,4 @@ Allow: /
 Disallow: /assets/lang/
 Disallow: /*lang=kk
 
-Sitemap: https://songokura.github.io/vistacleantech/sitemap.xml
+Sitemap: https://vclean.kz/sitemap.xml
